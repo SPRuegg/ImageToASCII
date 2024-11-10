@@ -35,6 +35,11 @@ This Java application converts a PNG image to its ASCII representation. It reads
 3. **Output**:
    After the image is processed, the ASCII art will be saved in a file named (ASCII).txt in the same directory where the program is run.
 
+## Known Issues
+If you have a file with the ".png" extension, however it was not originally a ".png" file, and was simply renamed,
+then the program will not detect it as a valid file. Ensure that the image you want to convert was already in ".png"
+format, otherwise find a conversion website to convert your image into the ".png" format properly.
+
 ## How it Works
 1. The program takes in a valid file of png format.
 2. It then calculates the brightness of each pixel, and determines which ASCII character to write it to
