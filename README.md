@@ -41,7 +41,7 @@ This Java application converts a PNG image to its ASCII representation. It reads
 3. Out of 10 possible brightness ranges, it writes the ASCII image into a text file
 
 ## License
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Author
 Shane Ruegg
