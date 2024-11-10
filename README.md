@@ -18,19 +18,19 @@ This Java application converts a PNG image to its ASCII representation. It reads
    Ensure you have the Java Development Kit (JDK) installed on your machine. To compile the program, run:
    
    ```bash
-   javac Main.java
+   javac ImageToASCII.java
    ```
 
 2. **Run the Program**:
    If you want to convert the file immediately, then:
    
    ```bash
-   java Main "path_to_image.png"
+   java ImageToASCII "path_to_image.png"
    ```
    or, if you are unsure what file you'd like to convert, then:
 
    ```bash
-   java Main
+   java ImageToASCII
    ```
 3. **Output**:
    After the image is processed, the ASCII art will be saved in a file named (ASCII).txt in the same directory where the program is run.
