@@ -1,7 +1,10 @@
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 /**
@@ -13,13 +16,14 @@ import java.util.Scanner;
  */
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
 
         BufferedImage file = null;
         if (args.length == 1) {
             try {
-                if (args[0].endsWith(".png"))
+                if (args[0].endsWith(".png")) {
                     file = ImageIO.read(new File(args[0]));
+                }
                 else file = promptUser();
                 imageToASCII(file);
                 System.exit(0);
@@ -37,23 +41,23 @@ public class Main {
      */
     public static BufferedImage promptUser() {
         BufferedImage file = null;
+        Scanner input = new Scanner(System.in);
         while (file == null) {
-            Scanner input = new Scanner(System.in);
             System.out.println("The file path provided was invalid or not provided.");
             System.out.print("Please enter a new png file path or type 'EXIT' to terminate: ");
             try {
                 String path = input.nextLine();
+                File imageFile = new File(path);
                 if (path.equalsIgnoreCase("EXIT")) {
                     System.exit(0);
                 }
                 if (path.length() > 4 && path.endsWith(".png")) {
-                    file = ImageIO.read(new File(path));
-                } else continue;
-            } catch (IOException ignored) {
-                continue;
-            }
-            input.close();
+                    file = ImageIO.read(imageFile);
+                }
+
+            } catch (IOException ignored) {}
         }
+        input.close();
         return file;
     }
 
@@ -63,7 +67,26 @@ public class Main {
      *
      * @param file The image to be converted to ASCII.
      */
-    public static void imageToASCII(BufferedImage file) {
-
+    public static void imageToASCII(BufferedImage file) throws FileNotFoundException {
+        File asciiImage = new File( "(ASCII).txt");
+        PrintWriter writer = new PrintWriter(asciiImage);
+        for (int row = 0; row < file.getHeight(); row++) {
+            for (int col = 0; col < file.getWidth(); col++) {
+                Color pixel = new Color(file.getRGB(col,row));
+                int brightness = (pixel.getRed() + pixel.getGreen() + pixel.getBlue()) / 3;
+                if (brightness > 230) writer.write(" ");
+                else if (brightness > 205) writer.write(".");
+                else if (brightness > 180) writer.write(":");
+                else if (brightness > 155) writer.write("-");
+                else if (brightness > 130) writer.write("=");
+                else if (brightness > 105) writer.write("+");
+                else if (brightness > 80) writer.write("*");
+                else if (brightness > 55) writer.write("#");
+                else if (brightness > 30) writer.write("%");
+                else writer.write("@");
+            }
+            writer.write(String.format("%n"));
+        }
+        writer.close();
     }
 }
