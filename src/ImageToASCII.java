@@ -14,7 +14,7 @@ import java.util.Scanner;
  * @author Shane Ruegg
  * @since 11/09/2024
  */
-public class Main {
+public class ImageToASCII {
 
     public static void main(String[] args) throws FileNotFoundException {
 
@@ -25,12 +25,12 @@ public class Main {
                     file = ImageIO.read(new File(args[0]));
                 }
                 else file = promptUser();
-                imageToASCII(file);
+                convert(file);
                 System.exit(0);
             } catch (IOException ignored) {}
         }
         file = promptUser();
-        imageToASCII(file);
+        convert(file);
     }
 
     /**
@@ -67,7 +67,7 @@ public class Main {
      *
      * @param file The image to be converted to ASCII.
      */
-    public static void imageToASCII(BufferedImage file) throws FileNotFoundException {
+    public static void convert(BufferedImage file) throws FileNotFoundException {
         File asciiImage = new File( "(ASCII).txt");
         PrintWriter writer = new PrintWriter(asciiImage);
         for (int row = 0; row < file.getHeight(); row++) {
