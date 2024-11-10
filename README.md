@@ -1,4 +1,4 @@
-# Image to ASCII Converter
+# Image to ASCII Converter (Java)
 ## Description
 This Java application converts a PNG image to its ASCII representation. It reads an input PNG file, processes it, and generates a text file containing the ASCII art of the image. If no image file is provided through the command-line arguments, the program will prompt the user to input a valid file path. The output is saved as a text file named (ASCII).txt.
 
